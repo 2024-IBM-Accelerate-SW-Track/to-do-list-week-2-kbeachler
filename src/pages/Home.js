@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { Button } from "@mui/material"; 
+import AddTodo from "../component/AddTodo";
+import Todos from "../component/todos";
+import Header from "../component/Header";
+import "../pages/Home.css";
 
 class Home extends Component {
   // A default state of this component with an empty list of todos.
@@ -6,6 +11,7 @@ class Home extends Component {
     super();
     this.state = {
       // create your empty list here call it todos.
+      todos: [],
     };
   }
   // the addTodo function simply creates a new array that includes the user submitted todo item and then
@@ -24,11 +30,23 @@ class Home extends Component {
       todos: new_list,
     });
   };
+  clearTodos = () => {
+    this.setState({ todos: [] });
+  };
   render() {
     return (
       <div className="Home">
-        <p> Replace this</p>
-        <h1>Todo's </h1>
+        <Header title="Todo's"/>
+        <Todos todos={this.state.todos}/>
+        <AddTodo addTodo={this.addTodo}/>
+        <Button
+          style={{ marginTop: "20px" }}
+          onClick={this.clearTodos}
+          variant="contained"
+          color="primary"
+        >
+          Clear All Tasks
+        </Button>
       </div>
     );
   }

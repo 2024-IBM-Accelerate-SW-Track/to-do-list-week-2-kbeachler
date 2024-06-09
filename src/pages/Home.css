@@ -1,4 +1,13 @@
 .Home {
-  background-color: ghostwhite;
+  background-color: #C6D9EC ;
   height: 100vh;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Home h1 {
+  font-family: 'Candara', monospace;
+  font-weight: bold;
+  color: #1C2472;
+  padding-top: 20px;
 }

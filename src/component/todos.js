@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, CardContent, Grid, ListItemButton, ListItemText, Checkbox } from "@mui/material";
 import "../component/todos.css";
 
 // 1. This component formats and returns the list of todos.
@@ -13,23 +14,23 @@ const Todos = ({ todos }) => {
       todos.map((todo) => {
         return (
           <Grid key={todo.id}>
-            <Card>
+             <Card style={{ backgroundColor: "#111E33" }}>
               {/* Remember, we set the local state of this todo item when the user submits the form in 
               AddTodo.js. All we need to do is return the todo list item */}
               <CardContent>
-                <span style={{ padding: "50px" }}>add todo content</span>
+                <span style={{ padding: "50px", color: "white"}}>{todo.content}</span>
               </CardContent>
             </Card>
           </Grid>
         );
       })
     ) : (
-      <p>{/*Enter your message here if todo list is empty*/}</p>
+      <p>{"You have no todo's left"}</p>
     );
     // Lastly, return the todoList constant that we created above to show all of the items on the screen.
     return (
       <div className="todoCollection" style={{ padding: "10px" }}>
-        {/*call todo list here*/}
+        {todoList}
       </div>
     );
 };

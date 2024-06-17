@@ -9,17 +9,18 @@ import "../component/todos.css";
 // 3. The map function is called to assign each array item with a key
 // 4. Think of lines 14-23 as a loop. For each todo in the todo list, we want to give the list item
 // a key, and it's own card shown in the UI
-const Todos = ({ todos }) => {
+const Todos = ({ todos, deleteTodo }) => {
     const todoList = todos.length ? (
       todos.map((todo) => {
         return (
           <Grid key={todo.id}>
-             <Card style={{ backgroundColor: "#111E33" }}>
+             <Card style={{ backgroundColor: "#a2b7de", marginTop: 10 }}>
               {/* Remember, we set the local state of this todo item when the user submits the form in 
               AddTodo.js. All we need to do is return the todo list item */}
-              <CardContent>
-                <span style={{ padding: "50px", color: "white"}}>{todo.content}</span>
-              </CardContent>
+              <ListItemButton component="a" href="#simple-list">
+                <Checkbox style={{ paddingLeft: 0 }} color="primary" onClick={() => deleteTodo(todo.id)}/>
+                <ListItemText primary={todo.content} secondary={todo.date}/>
+              </ListItemButton>
             </Card>
           </Grid>
         );

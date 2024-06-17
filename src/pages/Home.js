@@ -17,6 +17,12 @@ class Home extends Component {
   // the addTodo function simply creates a new array that includes the user submitted todo item and then
   // updates the state with the new list.
   addTodo = (todo) => {
+    const alreadyExists = this.state.todos.find((item) => {
+      return item.content === todo.content;
+    });
+    if (alreadyExists) {
+      return; // do nothing if task is already in the list !!
+    }
     // In React, keys or ids in a list help identify which items have changed, been added or removed. Keys
     // should not share duplicate values.
     // To avoid having dup values, we use the Math.random() function to generate a random value for a todo id.
@@ -30,6 +36,14 @@ class Home extends Component {
       todos: new_list,
     });
   };
+  deleteTodo = (id) => {
+    const todos = this.state.todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    this.setState({
+      todos: todos,
+    });
+  };
   clearTodos = () => {
     this.setState({ todos: [] });
   };
@@ -37,7 +51,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <Header title="Todo's"/>
-        <Todos todos={this.state.todos}/>
+        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
         <AddTodo addTodo={this.addTodo}/>
         <Button
           style={{ marginTop: "20px" }}

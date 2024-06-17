@@ -111,4 +111,8 @@ Upon completion of the Week 2 Lab Project, all the necessary components and func
 
 
 ## Pre-session Material
+<<<<<<< HEAD
 [**Here**](https://ibm.box.com/s/ir3pw5dzwluftvvh96ywbfx46senjlbb) are the pre-session materials that were provided to you earlier.
+=======
+[**Here**](https://ibm.box.com/s/ir3pw5dzwluftvvh96ywbfx46senjlbb) are the pre-session materials that were provided to you earlier.
+>>>>>>> main

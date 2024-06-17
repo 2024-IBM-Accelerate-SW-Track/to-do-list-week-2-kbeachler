@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { render, screen, fireEvent, waitFor} from '@testing-library/react';
+=======
+import { render, screen } from '@testing-library/react';
+>>>>>>> main
 import { unmountComponentAtNode } from 'react-dom';
 import App from './App';
 
@@ -18,7 +22,11 @@ afterEach(() => {
 
 test('test that App component renders', () => {
   render(<App />, container);
+<<<<<<< HEAD
 });
+=======
+ });
+>>>>>>> main
 
 test('test that new-item-button is a button', () => {
   render(<App/>, container);
@@ -31,6 +39,7 @@ test('test that new-item-textfield is an textfield ', () => {
   const element = screen.getByTestId('new-item-textfield');
   expect(element).toBeInTheDocument();
 });
+<<<<<<< HEAD
 
 test('renders Todos component with empty todo list', () => {
   render(<App />, container);
@@ -85,3 +94,5 @@ test('test that App component renders Task', () => {
     expect(taskTextElement.length).toBe(1);
   });
 });
+=======
+>>>>>>> main

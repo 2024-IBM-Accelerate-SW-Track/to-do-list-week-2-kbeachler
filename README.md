@@ -1,108 +1,114 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/rsLZezik)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=15224963&assignment_repo_type=AssignmentRepo)
-# Project Week 1: To-do list application
-## Introduction
-As a team, you should create and style the front-end of a to-do list web application using React and Material UI components. A typical user wants to be able to use a to-do list to organize tasks. Keeping user stories in mind when designing applications helps determine important features. We encourage you to take a unique approach to this lab as there is no one right answer. 
-- [Material Design](https://material.io/design/introduction) is a design system that can guide you on what UI decisions to make if you would like to explore best practices, but functionality is the key focus of the lab.
-- No back-end is required for this lab, all data (tasks) should live in the front-end.
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/r9S7wyqT)
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=15267479&assignment_repo_type=AssignmentRepo)
+# Project Week 2: To-do list application (Cont.)
 
+## Introduction
+As of now, you have completed Project Week 1 and should now have a React Application that can navigate to an **About me** page and a **Home** page currently hosting the To-do List Application that we will continue to build upon for Project Week 2. For Project Week 2, Look to implement more Material UI components to the front-end of your to-do list web application to give it a sleek and modern appearance. Aside from styling, A typical user wants to be able to use a to-do list to organize tasks. Keeping user stories in mind when designing applications helps determine important features. We encourage you to take a unique approach to this lab, as there is no one right answer. 
+
+- [**Material Design**](https://material.io/design/introduction) is a design system that can guide you on what UI decisions to make if you would like to explore best practices, but functionality is the key focus of the lab.
+- No back-end is required for this lab. All data (tasks) should live in the front-end.
 
 ## Requirements
-Feature requirements (Week 1 task is complete when you):
-+ Design your personalize about me page.
-+ **Take in and display** to do list items.
+Feature requirements (Week 2 task is complete when you):
++ Provide the date and time of item addition
++ Allow users to mark items as complete
++ Remove completed items from the list
++ Validate there are no duplicated items
 
 Implementation requirements:
-+ Use [**Material UI components**](https://material-ui.com) at least once throughout the app.
-+ Implement at least one **functional component**.
++ Use [**Material UI components**](https://material-ui.com/) at least once throughout the app
++ Use Javascript's list.map function at least once to manipulate list items
++ Implement at least one **functional component**
 
+Hints (Useful Resources):
++ Click [**here**](https://react.dev/learn/rendering-lists) for an example on utilizing the list.map function
 
 ## Instructions
 
-### About Page
-Note: The styling for all pages are provided for you. However, feel free to play around with the styling to gain better understanding of how they work.
-1. Navigate to src/pages/About.js. Replace the `p` tag with the content below. Your content should include:
-    - A profile picture
-    - Details about you like Interests, fun fact so on... To achieve this, consider using div tags to split the page in half like so
- ```
- <div>
- <div className="split left">
- <div className="centered">
- <img 
- className="profile_image"
- // Image goes here
- alt="Profile Pic"
- ></img>
- </div>
- </div>
- <div className="split right">
- <div className="centered">
- <div className="name_title">Your Name</div>
- <div className="brief_description">
- // Details about you goes here
- </div>
- </div>
- </div>
- </div>
+### To-do list application
+1. In this step, we will be adding the feature to display the date and time an item was added along with its task to the user. Also, we will be implementing a new component to display each item in the Todo list.
+      + Navigate to `src/component/AddTodo.js`
+        1. In the Constructor method, add a new key w/ the name `date` set to an empty string to represent the current date 
+        2. In the handleChange function, place the newly created `date` key and update the value using `Date().toLocaleString('en-US')` method
+        3. In the handleSubmit function, make sure to set the newly created `date` key back to an empty string after passing the user values to the addTodo function
+      + Navigate to `src/component/todos.js`
+        1. If not present, import ListItemButton and ListItemText components from the material UI library
+        2. Within the Card component, substitute the CardContent component with a ListItemButton Component
+            + **Before:**
+               ```
+                  <CardContent>
+                    <span style={{ padding: "50px" }}>{todo.content}</span>
+                  </CardContent>
+               ```
+            + **After:**
+               ```
+                  <ListItemButton component="a" href="#simple-list">
+                    <ListItemText primary={todo.content}/>
+                  </ListItemButton>
+                ```
+        3. Within the ListItemText component, add the `secondary` property next to the `primary` property to display the date for each task
+        4. (optional) Add `style={{marginTop:10}}` to the Card component to give space between each item in the Todo list and avoid item cards from overlapping each other
 
- ```
-2. Replace the dummy file with your photo in the assets folder. i.e /src/assets/<profile_pic_name.jpg>
-3. Import About.css file and profile picture in your About.js file like so 
- ```
- import "./About.css";
- import <profile_pic_name> from "../assets/profile_pic_name.jpg";
- ```
-### TO-DO List Application
-1. Navigate to `src/components/AddTodo.js`
-    + `AddTodo.js`
-      1. import Button and TextField from material UI like so: `import { Button, TextField } from "@mui/material";`
-      2. Both `handleChange` and `handleSubmit` functions are already provided for you. Paste the code below in the `div` tag inside the render() function. 
- ```
- <TextField
- label="Add New Item"
- variant="outlined"
- //onChange={call handleChange here}
- //value={set the content state here}
- />
- <Button
- style={{ marginLeft: "10px" }}
- //onClick={call handleSubmit here}
- variant="contained"
- color="primary"
- >
- Add
- </Button>
+2. In this step, we will be adding the checkbox feature to correspond to a task being completed
+      + Navigate to `src/component/todos.js`
+        1. If not present, import Checkbox from the material UI library
+        2. Within the ListItemButton component, Add a Checkbox component before the ListItemText component with a `style` property set to `paddingLeft:0` and a `color` property set to `primary`. **Hint:** `color` is a property of its own and not a property of `style`.
+3. In this step, we will be adding the delete feature which will remove an item from the Todo list once it is complete (user clicks on checkbox button)
+      + Navigate to `src/pages/Home.js`
+        1. Implement the code snippet below for the deleteTodo() function before or after the addTodo() function\
+        **Note:** Click [**here**](https://upmostly.com/tutorials/react-filter-filtering-arrays-in-react-with-examples) to learn more about the **filter** function and how it is being used w/in the deleteTodo function to remove an item from our Todo list
+        ```
+        deleteTodo = (id) => {
+            const todos = this.state.todos.filter((todo) => {
+              return todo.id !== id;
+            });
+            this.setState({
+              todos: todos,
+            });
+        };
+        ```
+        2. Within the Todos component in the render() function, pass in an additional property\
+           `deleteTodo={make your change}` to correspond to the deleteTodo function. **Hint:** replace `make your change` with deleteTodo() function
+      + Navigate to `src/component/todos.js`
+        1. Add `deleteTodo` as a new property to the Todos component to correspond to the new deleteTodo() function
+        2. Within the Checkbox component, add an onClick event handler to call the deleteTodo() function and pass the todo item's `id` as a parameter. **Hint:** Use an Arrow Function. Click [**here**](https://reactjs.org/docs/faq-functions.html) to learn about passing functions to components.
+4. In this final step, We will be adding a validation feature to avoid having duplicate tasks w/in the Todo list.
+      + Navigate to `src/pages/Home.js`
+        1. In the addTodo() function, implement a code to determine if a task already exists before performing the action to add an item to the Todo list. There are plenty of ways to implement this feature.\
+        A psudeo code example can be seen below:
+        ```
+        if (item exists in todo list) {
+            do nothing and just return
+            to break out the function
+        } else {
+            perform the action to add
+            the item to the Todo list }
+        ```
+      + **Note:** Look into utilizing the [**find**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) function to check if current item already exists w/in the Todo list. 
+      ```
+      array = [1,2,3,4,5,6]
+      const exists = array.find(t => t === '4')
+      console.log(exists)
+      
+      Output: true
+      ```
 
- ```
-    + navigate to`src/components/todos.js`
-      1. Import material UI components like so: `import {Card,CardContent,Grid,ListItemButton,ListItemText,Checkbox,} from "@mui/material";`
-      2. Inside the `CardContent` MUI tag replace the `add todo content`. Remember to use curly braces {}.
-      3. Enter "You have no todo's left" in the `p` tag.
-      4. Inside the `return function` replace the `call todo list here`.
-2. Navigate to `src/pages/Home.js`. Import `AddTodo.js`, `todos.js`, and `Home.css` files. By now you should be familiar with imports
-3. In Home.js file:
-  + Create a list with the name `todos` inside this.state in the constructor()
-  + Inside the render() function replace the `p` tag with both Todos and AddTodo components like so:
-    + `<Todos todos={make your change } />`. Hint: Replae "make your change" with current todo list state. Remember to use the `this` keyword
-    + `<AddTodo addTodo={make your change} />`. Hint: replace make your change with addTodo() function. Remember to use the `this` keyword
+### To-do list application stretch assignment (optional challenge)
 
+Tasks can have pre-conditions and acceptance criteria. For this stretch assignment, create two new text fields for them, and when the user clicks submit, these fields should be displayed in the card as well.
 
-## Running Your Application
-Run the below commands to render the application and open it on the browser:
-* `npm install` - This command is used to install all the dependencies listed in a project's `package.json` file.
-* `npm start` - Compiles and starts your application. It runs the script defined in the start property of the scripts section in package.json.
+Hint: Add two new variables to the state and take a look at [**this tutorial**](https://www.tutorialspoint.com/how-to-use-the-handlechange-function-in-react-component#:~:text=In%20the%20handleChange()%20function%2C%20we%20can%20get%20the%20name,()%20function%20handles%20all%20inputs.)
 
 
 ## Testing
-When testing web components, developers often use ids to uniquely define elements on a page. The React Testing Library provides a query that can identify items with the attribute data-tested to do just that (reference [here](https://testing-library.com/docs/queries/bytestid/)). We have implemented simple tests in `App.test.js` that will look for ids in your code. Do not push changes to the tests in this file. To get familiar with the idea of testing ids, implement the attributes below:
- + `data-testid="new-item-textfield"` on the TextField component, which takes user input for new items.
- + `data-testid="new-item-button"` on the Button component, which submits new items to the to-do list.
+Upon completion of the Week 2 Lab Project, all the necessary components and functions should be implemented in order to successfully complete the test cases mentioned below:
++ Add Button Component adds the task to the list (on click)
++ Add Button Component doesn't add blank tasks to the list (on click)
++ Add Button Component doesn't add duplicate tasks to the list (on click)
++ Checkbox Button component removes the task from the list (on click)
 
-Material UI components (and other libraries) render as HTML components under the hood, so using Material UI's TextField would still render in the DOM as an TextField element and pass the tests for this lab.
-
-To test your code, you can run `npm test`. It runs the script defined in the test property of the scripts section in package.json. For example:
+**Note:** Material UI components (and other libraries) render as HTML components under the hood, so using Material UI's TextField would still render in the DOM as an Input element and pass the tests for this lab.
 
 
-## Pre-session Materials
-Here is a [**link**](https://ibm.box.com/s/2ilcx4q3xornonec3kh5s8aadzl2rc48) to the pre-session material that was provided to you earlier.
-
+## Pre-session Material
+[**Here**](https://ibm.box.com/s/ir3pw5dzwluftvvh96ywbfx46senjlbb) are the pre-session materials that were provided to you earlier.
